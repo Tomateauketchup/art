@@ -1,0 +1,100 @@
+body {
+	margin: 0px;
+	/* 	overflow-y: scroll; */
+	font-family: 'Quicksand', sans-serif;
+	font-size: 15px;
+	color: #e5e5e5;
+	background-color: #292929;
+}
+
+table {
+	border-spacing: 0px;
+}
+
+table td, table td * {
+	vertical-align: top;
+	padding: 0px;
+}
+
+a {
+	color: #e5e5e5;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.main_panel {
+	overflow-y: scroll;
+}
+
+.linkSpec1 {
+	color: #e5e5e5;
+	text-decoration: none;
+}
+
+.linkSpec1:hover {
+	text-decoration: none;
+}
+
+.workImg {
+	border: 2px solid #1e1e1e;
+}
+
+.workImg:hover {
+	border: 2px solid red;
+}
+
+.textAlignCenter {
+	text-align: center;
+}
+
+.button {
+	border: 1px solid white;
+	display: inline-block;
+	padding-left: 7px;
+	padding-right: 7px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	cursor: pointer;
+}
+
+.button:hover {
+	background-color: #e5e5e5;
+	color: black;
+}
+
+.closeButton {
+	border: 1px solid #8b8b8b;
+	display: inline-block;
+	padding-left: 7px;
+	padding-right: 7px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	cursor: pointer;
+	background-color: #292929;
+	font-size: 22px;
+	color: white;
+}
+
+.closeButton:hover {
+	background-color: white;
+	color: black;
+}
+
+.catalogWorkBox {
+	margin: auto;
+	margin-bottom: 200px;
+}
+
+.workBoxTitle {
+	font-size: 22px;
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+
+.workDetailBox {
+	padding: 15px;
+	font-size: 15px;
+}

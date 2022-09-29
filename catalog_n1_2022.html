@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title lng-tag="jb_1_small_formats"></title>
+
+<script type="text/javascript" src="fr_language_messages.js"></script>
+<script type="text/javascript" src="en_language_messages.js"></script>
+<script type="text/javascript" src="data.js"></script>
+<script type="text/javascript" src="lib.js"></script>
+<link rel="stylesheet" href="site.css">
+<link
+	href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700|Roboto|PT+Sans+Caption|Lato|Open+Sans"
+	rel="stylesheet">
+
+
+<script type="text/javascript">
+	function createCatlog(panel, selected_works, site_data) {
+		for (let i = 0; i < selected_works.length; i++) {
+			var workId = selected_works[i];
+
+			var work = findWorkById(workId);
+			if (work) {
+
+				var technique = work.technique;
+				var height = work.height;
+				var width = work.width;
+				var heightStr = Math.round(height / 10);
+				var widthStr = Math.round(width / 10);
+
+				var table = document.createElement("table");
+				table.setAttribute("class", "catalogWorkBox");
+				table.style.maxWidth="800px";
+				var tr = document.createElement("tr");
+				table.appendChild(tr);
+				var td = document.createElement("td");
+				td.style.padding = "8px"
+				td.style.backgroundColor = "black";
+				tr.appendChild(td);
+				var img = document.createElement("img");
+				td.appendChild(img);
+				img.setAttribute("src", nq_image_path + "//" + workId + ".jpg");
+				img.style.width = "100%";
+				img.style.height = "auto";
+				img.style.cursor = "pointer";
+				img.addEventListener("click", function() {
+					openWork(workIdConst);
+				});
+
+				tr = document.createElement("tr");
+				table.appendChild(tr);
+				td = document.createElement("td");
+				tr.appendChild(td);
+
+				var div = createWorkDetailBox(work);
+				td.appendChild(div);
+
+				var div2 = document.createElement("div");
+				div.appendChild(div2);
+				div2.setAttribute("class", "button");
+				div2.setAttribute("lng-tag", "open_hd");
+				div2.style.marginTop = "15px";
+				const workIdConst = workId;
+				div2.addEventListener("click", function() {
+					openWork(workIdConst);
+				});
+				panel.appendChild(table);
+
+			}
+
+		}
+	}
+
+	function init() {
+
+		doResizeWindow();
+		var panel_div = document.querySelector('#catalog_works');
+		var selected_works = [ "14A-2022", "13A-2022", "20A-2022", "24A-2022",
+				"15A-2022", "16A-2022", "4A-2022", "8A-2022", "12A-2022",
+				"17A-2022" ];
+		createCatlog(panel_div, selected_works, site_data);
+		translate();
+	}
+
+	function windowResized() {
+		doResizeWindow();
+	}
+
+	window.onresize = windowResized;
+</script>
+
+</head>
+<body onload="init()">
+
+	<div id="main_panel" class="main_panel">
+		<div
+			style="margin-top: 20px; margin-bottom: 10px; text-align: center; font-size: 27px;">
+			<a class="linkSpec1" href="index.html">JEAN BOUSSICAULT</a>
+		</div>
+		<div style="margin-bottom: 50px; text-align: center;">
+			<a lng-href="index.html">Home</a> | <a lng-href="all_works.html"
+				lng-tag="all_works"></a> | <a lng-href="contact.html"
+				lng-tag="contact"></a> | <a href="catalog_n1_2022.html?locale=fr_FR">Français</a>
+			| <a href="catalog_n1_2022.html?locale=en_US">English</a>
+		</div>
+		<div class="textAlignCenter"
+			style="font-size: 25px; margin-bottom: 10px;" lng-tag="catalog_2022"></div>
+		<div class="textAlignCenter"
+			style="font-size: 22px; margin-bottom: 10px;">#1</div>
+		<div class="textAlignCenter"
+			style="font-size: 21px; margin-bottom: 35px; font-style: italic;"
+			lng-tag="small_formats"></div>
+		<div
+			style="margin-bottom: 130px; text-align: center; padding-left: 10px; padding-right: 10px;">
+			<img alt="Mosaic" src="img/N1_mosaic.png"
+				style="width: 100%; max-width: 800px; height: auto;">
+		</div>
+		<div style="text-align: center; margin-bottom: 50px;">
+			<img alt="" src="img/arrow_bottom.svg"
+				style="width: 45px; height: auto;">
+		</div>
+
+		<div id="catalog_works"></div>
+	</div>
+</body>
+</html>

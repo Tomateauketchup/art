@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title lng-tag="jb_works"></title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="text/javascript" src="fr_language_messages.js"></script>
+<script type="text/javascript" src="en_language_messages.js"></script>
+<script type="text/javascript" src="data.js"></script>
+<script type="text/javascript" src="lib.js"></script>
+<script type="text/javascript" src="worksNavigator.js"></script>
+
+<link rel="stylesheet" href="site.css">
+<link
+	href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700|Roboto|PT+Sans+Caption|Lato|Open+Sans"
+	rel="stylesheet">
+
+<script type="text/javascript">
+	var worksNavigator = new worksNavigator();
+	var navBarWidth = 200;
+
+	function windowResized() {
+		doResizeWindow();
+
+		var showLeftBar = windowWidth > 1000;
+		showLeftBar = false;
+
+		var navBar = document.querySelector('#nav_bar');
+		var panel_div = document.querySelector('#panel_div');
+
+		navBar.style.height = windowHeight + "px";
+
+		var nbCols = parseInt(document.querySelector('#nb_cols').value);
+
+		if (showLeftBar === true) {
+			navBar.style.display = "block";
+			panel_div.style.marginLeft = navBarWidth + "px";
+		} else {
+			navBar.style.display = "none";
+			panel_div.style.marginLeft = "10px";
+
+			nbCols = 5;
+			if (windowWidth < 500) {
+				nbCols = 2;
+			} else if (windowWidth < 700) {
+				nbCols = 3;
+			} else if (windowWidth < 1500) {
+				nbCols = 4;
+			}
+		}
+
+		var selectionValue = document
+				.querySelector('input[name="perimeter"]:checked').value;
+		var sketches = document.querySelector('#sketch').checked;
+		var oil_paintings = document.querySelector('#oil_painting').checked;
+		var acrylic = document.querySelector('#acrylic').checked;
+		var chinese_paintings = document.querySelector('#chinese_painting').checked;
+		var watercolor_acrylic = document.querySelector('#watercolor_acrylic').checked;
+		var newest_first = document.querySelector('#newest_first').checked;
+		var onlyTop = true;
+		if (selectionValue === "all") {
+			onlyTop = false;
+		}
+
+		var selectedCategories = [];
+		if (sketches === true) {
+			selectedCategories.push("sketch");
+		}
+		if (chinese_paintings === true) {
+			selectedCategories.push("chinese_painting");
+		}
+		if (watercolor_acrylic === true) {
+			selectedCategories.push("watercolor_acrylic");
+		}
+		if (oil_paintings === true) {
+			selectedCategories.push("oil_painting");
+		}
+		if (acrylic === true) {
+			selectedCategories.push("acrylic_painting");
+		}
+		worksNavigator.draw(panel_div, nbCols, site_data, selectedCategories,
+				onlyTop, newest_first);
+	}
+
+	function init() {
+
+		var urlParams = "";
+		if (isSketchType() === true) {
+			urlParams = "tp=sk";
+		} else if (isChineseType() === true) {
+			urlParams = "tp=ch";
+		} else if (isPaintingsType() === true) {
+			urlParams = "tp=pt";
+		}
+		var frUrl = "all_works.html?locale=fr_FR&" + urlParams;
+		var enUrl = "all_works.html?locale=en_US&" + urlParams;
+		var showAll = true;
+		var selectSketch = isSketchType();
+		var selectChinese = isChineseType();
+		var selectPaintings = isPaintingsType();
+		var nbCol = 6;
+		var selectAll = selectSketch === false && selectChinese === false
+				&& selectPaintings === false;
+
+		if (selectAll === true) {
+			selectSketch = true;
+			selectChinese = true;
+			selectPaintings = true;
+			//showAll = false;
+		}
+
+		var inputElem = document.querySelector('#radio_selection');
+		inputElem.checked = !showAll;
+		inputElem.addEventListener('input', filterSelected);
+
+		inputElem = document.querySelector('#radio_all');
+		inputElem.checked = showAll;
+		inputElem.addEventListener('input', filterSelected);
+
+		inputElem = document.querySelector('#sketch');
+		inputElem.addEventListener('input', filterSelected);
+		if (selectSketch === true) {
+			inputElem.checked = true;
+		}
+
+		inputElem = document.querySelector('#chinese_painting');
+		inputElem.addEventListener('input', filterSelected);
+		if (selectChinese === true) {
+			inputElem.checked = true;
+		}
+
+		inputElem = document.querySelector('#oil_painting');
+		inputElem.addEventListener('input', filterSelected);
+		if (selectPaintings === true) {
+			inputElem.checked = true;
+		}
+
+		inputElem = document.querySelector('#acrylic');
+		inputElem.addEventListener('input', filterSelected);
+
+		if (selectPaintings === true) {
+			inputElem.checked = true;
+		}
+
+		inputElem = document.querySelector('#watercolor_acrylic');
+		inputElem.addEventListener('input', filterSelected);
+		if (selectPaintings === true) {
+			inputElem.checked = true;
+		}
+
+		inputElem = document.querySelector('#newest_first');
+		inputElem.addEventListener('input', filterSelected);
+
+		inputElem = document.querySelector('#nb_cols');
+		inputElem.addEventListener('input', filterSelected);
+
+		inputElem = document.querySelector('#fr_link');
+		inputElem.href = frUrl;
+
+		inputElem = document.querySelector('#en_link');
+		inputElem.href = enUrl;
+
+		filterSelected();
+	}
+
+	function filterSelected() {
+
+		windowResized();
+		translate();
+	}
+
+	window.onresize = windowResized;
+</script>
+
+</head>
+<body onload="init()">
+
+	<div id="main_panel" class="main_panel">
+		<div id="nav_bar"
+			style="position: fixed; top: 0px; padding: 10px; display: none">
+			<div style="display: none;">
+				<input id="radio_selection" type="radio" name="perimeter"
+					value="selection">Sélection
+			</div>
+			<div style="display: none;">
+				<input id="radio_all" type="radio" name="perimeter" value="all"
+					checked="checked">Tout
+			</div>
+			<div>
+				<input id="newest_first" type="checkbox" checked="checked">Plus
+				récents d'abord
+			</div>
+			<div
+				style="margin-top: 7px; padding-top: 7px; border-top: 1px solid #9d9d9d;">
+				<input id="sketch" type="checkbox">Croquis
+			</div>
+			<div>
+				<input id="oil_painting" type="checkbox">Peintures à l'huile
+			</div>
+			<div>
+				<input id="acrylic" type="checkbox">Peintures acrylique
+			</div>
+			<div>
+				<input id="chinese_painting" type="checkbox">Peintures
+				chinoises
+			</div>
+			<div>
+				<input id="watercolor_acrylic" type="checkbox">Aquarelle -
+				acrylique
+			</div>
+			<div
+				style="margin-top: 7px; padding-top: 7px; border-top: 1px solid #9d9d9d;">
+				Nb colonnes : <select name="nCols" id="nb_cols">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6" selected="selected">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+				</select>
+			</div>
+
+		</div>
+		<div
+			style="margin-top: 20px; margin-bottom: 10px; text-align: center; font-size: 27px;">
+			<a class="linkSpec1" href="index.html">JEAN BOUSSICAULT</a>
+		</div>
+		<div style="margin-bottom: 50px; text-align: center;">
+			<a lng-href="index.html">Home</a> | <a lng-href="all_works.html"
+				lng-tag="all_works"></a> | <a lng-href="contact.html"
+				lng-tag="contact"></a> | <a id="fr_link"
+				href="all_works.html?locale=fr_FR">Français</a> | <a id="en_link"
+				href="all_works.html?locale=en_US">English</a>
+		</div>
+		<div id="panel_div" style="margin-left: 200px; margin-bottom: 10px;"></div>
+	</div>
+</body>
+</html>
