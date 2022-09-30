@@ -127,6 +127,8 @@ function openWork(workId) {
 
 }
 
+//TODO améliorer l'ordonancement de l'affichage des images
+
 function createWorkDetailBox(work) {
 
 	if (work) {

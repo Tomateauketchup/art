@@ -20,7 +20,9 @@
 <script type="text/javascript">
 	var worksNavigator = new worksNavigator();
 	var navBarWidth = 200;
-
+	var lazyloadImages = document.querySelectorAll("img.lazy");
+	var lazyloadThrottleTimeout;
+	var mainPanelDiv;
 	function windowResized() {
 		doResizeWindow();
 
@@ -82,9 +84,15 @@
 		}
 		worksNavigator.draw(panel_div, nbCols, site_data, selectedCategories,
 				onlyTop, newest_first);
+
+		lazyloadImages = document.querySelectorAll("img.lazy");
+		lazyload();
 	}
 
 	function init() {
+		
+		mainPanelDiv = document.querySelector('#main_panel');
+		mainPanelDiv.addEventListener("scroll", lazyload);
 
 		var urlParams = "";
 		if (isSketchType() === true) {
@@ -171,6 +179,28 @@
 		translate();
 	}
 
+	function lazyload() {
+		if (lazyloadThrottleTimeout) {
+			clearTimeout(lazyloadThrottleTimeout);
+		}
+
+		lazyloadThrottleTimeout = setTimeout(function() {
+			var scrollTop = mainPanelDiv.scrollTop+windowHeight+20;
+			lazyloadImages.forEach(function(img) {
+
+				var at=img.getAttribute("top_pos");
+				var top_pos = Number(at);
+
+				if (top_pos < (window.innerHeight + scrollTop)) {
+					img.src = img.dataset.src;
+					img.classList.remove('lazy');
+				}
+			});
+			
+		}, 20);
+	}
+
+	
 	window.onresize = windowResized;
 </script>
 
@@ -238,7 +268,7 @@
 				href="all_works.html?locale=fr_FR">Français</a> | <a id="en_link"
 				href="all_works.html?locale=en_US">English</a>
 		</div>
-		<div id="panel_div" style="margin-left: 200px; margin-bottom: 10px;"></div>
+		<div id="panel_div" style="margin-left: 200px; margin-bottom: 50px;"></div>
 	</div>
 </body>
 </html>

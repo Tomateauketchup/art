@@ -7,7 +7,7 @@ function worksNavigator() {
 worksNavigator.prototype.draw = function(thumbnails_panel, nbCol, site_data, selectedCategories, topOnly, newest_first) {
 
 
-//TODO Faire traduction des filtres du navigateur de travaux
+	//TODO Faire traduction des filtres du navigateur de travaux
 
 	var panelWidth = thumbnails_panel.offsetWidth;
 	//	console.log("height:" + windowHeight + ", width:" + windowWidth);
@@ -17,7 +17,7 @@ worksNavigator.prototype.draw = function(thumbnails_panel, nbCol, site_data, sel
 	var colWidth = Math.round(panelWidth / nbCol);
 	var colWidthArray = [];
 	var elementsArray = [];
-	
+
 
 
 	var totalWidth = 0;
@@ -48,9 +48,9 @@ worksNavigator.prototype.draw = function(thumbnails_panel, nbCol, site_data, sel
 		var workHeight = work.height;
 		var workwidth = work.width;
 		var category = work.category;
-		var isTop = work.level==5;
-		var ratio=workHeight/workwidth;
-		workHeight=colWidth*ratio;
+		var isTop = work.level == 5;
+		var ratio = workHeight / workwidth;
+		workHeight = colWidth * ratio;
 
 		var selected = false;
 
@@ -85,7 +85,7 @@ worksNavigator.prototype.draw = function(thumbnails_panel, nbCol, site_data, sel
 			//On créé dans la bonne colonne		
 
 			elementsArray[selectedCol].works.push(work);
-
+			work.top_pos = colHeights[selectedCol];
 			//On ajoute la hauteur
 			colHeights[selectedCol] = colHeights[selectedCol] + margin + workHeight;
 
@@ -110,15 +110,17 @@ worksNavigator.prototype.draw = function(thumbnails_panel, nbCol, site_data, sel
 	for (let i = 0; i < elementsArray.length; i++) {
 		var elem = elementsArray[i];
 		var width = elem.width;
+		
 		html = html + "<td><div style='width:" + width + "px;'>";
 
 		for (let j = 0; j < elem.works.length; j++) {
 
 			var work = elem.works[j];
 			var workId = work.id;
-			var src = lq_image_path+"/" + workId + ".jpg"
+			var top_pos = work.top_pos;
+			var src = lq_image_path + "/" + workId + ".jpg"
 
-			html = html + "<div style='margin-bottom:" + margin + "px;width:" + width + "px;'><img onclick='openWork(\"" + workId + "\")' class='workImg' src='" + src + "' style='cursor:pointer;width:" + (width - margin - hoverSize) + "px;height:auto;'></div>";
+			html = html + "<div style='margin-bottom:" + margin + "px;width:" + width + "px;'><img onclick='openWork(\"" + workId + "\")' class='workImg lazy' top_pos='" + top_pos + "' data-src='" + src + "' style='cursor:pointer;width:" + (width - margin - hoverSize) + "px;height:auto;'></div>";
 
 		}
 
