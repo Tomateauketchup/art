@@ -1,7 +1,7 @@
 
-var hq_image_path = "http://img.jeanboussicault.com/hd";
-var nq_image_path = "http://img.jeanboussicault.com/nd";
-var lq_image_path = "http://img.jeanboussicault.com/ld";
+var hq_image_path = "http://jeanboussicault.com/hd";
+var nq_image_path = "http://jeanboussicault.com/nd";
+var lq_image_path = "http://jeanboussicault.com/ld";
 var windowHeight = window.innerHeight;
 var windowWidth = window.innerWidth;
 var workViewer;
