@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title lng-tag="jb_welcome"></title>
+
+<script type="text/javascript" src="fr_language_messages.js"></script>
+<script type="text/javascript" src="en_language_messages.js"></script>
+<script type="text/javascript" src="data.js"></script>
+<script type="text/javascript" src="lib.js"></script>
+<link rel="stylesheet" href="site.css">
+<link
+	href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700|Roboto|PT+Sans+Caption|Lato|Open+Sans"
+	rel="stylesheet">
+
+
+<script type="text/javascript">
+	function init() {
+		windowResized();
+		translate();
+	}
+
+	function windowResized() {
+		doResizeWindow();
+
+		var phoneDisplay = false;
+		var mozaic = "N1_mosaic.png";
+		if (windowWidth > 1160) {
+
+		} else if (windowWidth > 900) {
+			mozaic = "N1_mosaic_small.png";
+		} else {
+			mozaic = "N1_mosaic.png";
+			phoneDisplay = true;
+		}
+
+		var mosaic_img = document.querySelector('#mosaic_img');
+		mosaic_img.src = "img/" + mozaic;
+
+		var normaDisplayDiv = document.querySelector('#normal_display');
+		var phoneDisplayDiv = document.querySelector('#phone_display');
+		if (phoneDisplay === true) {
+			normaDisplayDiv.hidden = true;
+			phoneDisplayDiv.hidden = false;
+		} else {
+			normaDisplayDiv.hidden = false;
+			phoneDisplayDiv.hidden = true;
+		}
+	}
+
+	window.onresize = windowResized;
+</script>
+
+</head>
+
+
+
+<body onload="init()" style="overflow-y: scroll;">
+	<div style="margin-top: 20px; text-align: center; font-size: 27px;">JEAN
+		BOUSSICAULT</div>
+
+	<div id="normal_display"
+		style="padding-left: 20px; padding-right: 20px; margin-top: 100px;">
+		<table style="margin: auto; margin-top: 30px;">
+			<tr>
+				<td
+					style="width: 50%; border-right: 1px solid white; padding-right: 20px;"><div
+						class="textAlignCenter"
+						style="font-size: 20px; margin-bottom: 10px;"
+						lng-tag="new_catalog_2022"></div>
+					<div class="textAlignCenter" style="font-size: 18px;">#1</div>
+					<div class="textAlignCenter"
+						style="font-size: 17px; margin-bottom: 15px; font-style: italic;"
+						lng-tag="small_formats"></div>
+					<div style="margin-bottom: 20px; text-align: center;">
+						<a lng-href="catalog_n1_2022.html"><img id="mosaic_img"
+							alt="Mosaic" src="" style="height: 150px; width: auto;"></a>
+					</div>
+					<div class="textAlignCenter">
+						<a lng-href="catalog_n1_2022.html"><div class="button"
+								lng-tag="open"></div></a>
+					</div></td>
+				<td style="width: 50%; padding-left: 20px;"><div
+						class="textAlignCenter"
+						style="font-size: 20px; margin-bottom: 70px;" lng-tag="all_works"></div>
+					<div class="textAlignCenter"
+						style="margin-bottom: 10px; font-size: 17px;">
+						<a lng-href="all_works.html" lng-href-param="tp=sk"
+							lng-tag="sketches"></a>
+					</div>
+					<div class="textAlignCenter"
+						style="margin-bottom: 10px; font-size: 17px;">
+						<a lng-href="all_works.html" lng-href-param="tp=pt"
+							lng-tag="paintings"></a>
+					</div>
+					<div class="textAlignCenter" style="font-size: 17px;">
+						<a lng-href="all_works.html" lng-href-param="tp=ch"
+							lng-tag="chinese_paintings"></a>
+					</div></td>
+
+			</tr>
+
+		</table>
+	</div>
+	<div id="phone_display"
+		style="margin-top: 40px; padding-left: 10px; padding-right: 10px;">
+		<div style="text-align: center; font-size: 20px;"
+			lng-tag="new_catalog_2022"></div>
+		<div class="textAlignCenter"
+			style="font-size: 18px; margin-top: 10px;">#1</div>
+		<div class="textAlignCenter"
+			style="font-size: 17px; margin-bottom: 15px; font-style: italic;"
+			lng-tag="small_formats"></div>
+		<div style="margin-bottom: 20px; text-align: center;">
+			<a lng-href="catalog_n1_2022.html"><img id="mosaic_img_phone"
+				alt="Mosaic" src="img/N1_mosaic_small.png"
+				style="height: auto; max-width: 399px; width: 100%;"></a>
+		</div>
+		<div class="textAlignCenter">
+			<a lng-href="catalog_n1_2022.html"><div class="button"
+					lng-tag="open"></div></a>
+		</div>
+		<div
+			style="border-top: 1px solid white; width: 200px; margin: auto; margin-top: 45px;"></div>
+		<div class="textAlignCenter"
+			style="font-size: 20px; margin-bottom: 30px; margin-top: 45px;"
+			lng-tag="all_works"></div>
+		<div class="textAlignCenter"
+			style="margin-bottom: 10px; font-size: 17px;">
+			<a lng-href="all_works.html" lng-href-param="tp=sk"
+				lng-tag="sketches"></a>
+		</div>
+		<div class="textAlignCenter"
+			style="margin-bottom: 10px; font-size: 17px;">
+			<a lng-href="all_works.html" lng-href-param="tp=pt"
+				lng-tag="paintings"></a>
+		</div>
+		<div class="textAlignCenter" style="font-size: 17px;">
+			<a lng-href="all_works.html" lng-href-param="tp=ch"
+				lng-tag="chinese_paintings"></a>
+		</div>
+	</div>
+	<div style="text-align: center; margin-top: 50px; margin-bottom: 20px;">
+		<a lng-href="contact.html" lng-tag="contact">Contact</a> | <a
+			href="index.html?locale=fr_FR">Français</a> | <a
+			href="index.html?locale=en_US">English</a>
+	</div>
+</body>
+
+
+</html>

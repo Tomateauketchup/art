@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title lng-tag="jb_welcome"></title>
+
+<script type="text/javascript" src="fr_language_messages.js"></script>
+<script type="text/javascript" src="en_language_messages.js"></script>
+<script type="text/javascript" src="data.js"></script>
+<script type="text/javascript" src="lib.js"></script>
+<link rel="stylesheet" href="site.css">
+<link
+	href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700|Roboto|PT+Sans+Caption|Lato|Open+Sans"
+	rel="stylesheet">
+
+
+<script type="text/javascript">
+	function init() {
+		windowResized();
+		translate();
+	}
+
+	function windowResized() {
+		doResizeWindow();
+
+	}
+
+	window.onresize = windowResized;
+</script>
+
+</head>
+
+
+
+<body onload="init()" style="overflow-y: scroll;">
+	<div
+		style="max-width: 900px; margin: auto; padding-left: 10px; padding-right: 10px;">
+		<div
+			style="margin-top: 20px; margin-bottom: 10px; text-align: center; font-size: 27px;">
+			<a class="linkSpec1" href="index.html">JEAN BOUSSICAULT</a>
+		</div>
+		<div style="margin-bottom: 50px; text-align: center;">
+			<a lng-href="index.html">Home</a> | <a lng-href="works.html"
+				lng-tag="all_works"></a> | <a lng-href="contact.html"
+				lng-tag="contact"></a> | <a href="works.html?locale=fr_FR">Français</a>
+			| <a href="works.html?locale=en_US">English</a>
+		</div>
+
+		<div class="textAlignCenter"
+			style="margin-bottom: 10px; font-size: 22px;">
+			<a lng-href="all_works.html" lng-href-param="tp=sk"
+				lng-tag="sketches"></a>
+		</div>
+		<div style="text-align: center; margin-bottom: 40px;">
+			<a lng-href="all_works.html" lng-href-param="tp=sk"><img
+				style="width: 100%; height: auto;" alt=""
+				src="img/sketches_mosaic.png"></a>
+		</div>
+		<div class="textAlignCenter"
+			style="margin-bottom: 10px; font-size: 22px;">
+			<a lng-href="all_works.html" lng-href-param="tp=pt"
+				lng-tag="paintings"></a>
+		</div>
+		<div style="text-align: center; margin-bottom: 40px;">
+			<a lng-href="all_works.html" lng-href-param="tp=pt"><img
+				style="width: 100%; height: auto;" alt=""
+				src="img/paintings_mosaic.png"></a>
+		</div>
+		<div class="textAlignCenter"
+			style="margin-bottom: 10px; font-size: 22px;">
+			<a lng-href="all_works.html" lng-href-param="tp=ch"
+				lng-tag="chinese_paintings"></a>
+		</div>
+		<div style="text-align: center; margin-bottom: 40px;">
+			<a lng-href="all_works.html" lng-href-param="tp=ch"><img
+				style="width: 100%; height: auto;" alt=""
+				src="img/chinese_mosaic.png"></a>
+		</div>
+	</div>
+</body>
+
+
+</html>
