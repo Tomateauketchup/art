@@ -8,7 +8,7 @@ en_language_messages = {
 	"chinese_paintings": "Chinese paintings",
 	"latest_catalog_2022": "Latest catalog 2022",
 	"new_catalog_2022": "New catalog 2022",
-	"catalog_2022": "Catalog 2022",
+	"catalog_2022": "News 2022",
 	"small_formats": "Small formats",
 	"close": "Close",
 	"open": "Open",

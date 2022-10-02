@@ -8,7 +8,7 @@ fr_language_messages = {
 	"chinese_paintings": "Peintures chinoises",
 	"latest_catalog_2022": "Dernier catalogue 2022",
 	"new_catalog_2022": "Nouveau catalogue 2022",
-	"catalog_2022": "Catalogue 2022",
+	"catalog_2022": "Nouveautés 2022",
 	"small_formats": "Petits formats",
 	"close": "Fermer",
 	"open": "Ouvrir",
