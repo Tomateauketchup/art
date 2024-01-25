@@ -9,15 +9,14 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="manifest" href="site.webmanifest">
-<link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 
+<title>Jean Boussicault</title>
+<meta name="description"
+	content="Official website of the painter Jean Boussicault. Find here all his works and latest works.">
 
-<title lng-tag="jb_welcome"></title>
-
-<script type="text/javascript" src="fr_language_messages.js"></script>
-<script type="text/javascript" src="en_language_messages.js"></script>
 <script type="text/javascript" src="data.js"></script>
 <script type="text/javascript" src="lib.js"></script>
 <link rel="stylesheet" href="site.css">
@@ -27,69 +26,154 @@
 
 
 <script type="text/javascript">
+	function createCatlog(panel, selected_works, site_data) {
+
+		var max_height = window.innerHeight - 100
+		for (let i = 0; i < selected_works.length; i++) {
+			var workId = selected_works[i];
+
+			var work = findWorkById(workId);
+			if (work) {
+
+				var technique = work.technique;
+				var height = work.height;
+				var width = work.width;
+				var heightStr = Math.round(height / 10);
+				var widthStr = Math.round(width / 10);
+
+				var table = document.createElement("table");
+				table.setAttribute("class", "catalogWorkBox");
+				table.style.maxWidth = "800px";
+				var tr = document.createElement("tr");
+				table.appendChild(tr);
+				var td = document.createElement("td");
+				td.style.padding = "10px"
+				td.style.backgroundColor = "black";
+				tr.appendChild(td);
+				var img = document.createElement("img");
+				td.appendChild(img);
+				img.setAttribute("src", selected_image_path + "//" + workId + ".jpg");
+				img.style.width = "100%";
+				img.style.height = "auto";
+				img.style.maxHeight = max_height + "px";
+
+				//img.style.cursor = "pointer";
+				//img.addEventListener("click", function() {
+				//	openWork(workIdConst);
+				//});
+
+				tr = document.createElement("tr");
+				table.appendChild(tr);
+				td = document.createElement("td");
+				tr.appendChild(td);
+
+				var div = createWorkDetailBox(work,true);
+				td.appendChild(div);
+
+				panel.appendChild(table);
+
+			}
+
+		}
+	}
+
 	function init() {
-		windowResized();
-		translate();
+
+		doResizeWindow();
+		var panel_div = document.querySelector('#catalog_works');
+		var year_div = document.querySelector('#year_div');
+		var prev_year_div = document.querySelector('#prev_year');
+		var next_year_div = document.querySelector('#next_year');
+		var params = new URLSearchParams(document.location.search);
+		var name = params.get("y");
+
+		var prev_year = ""
+		var next_year = ""
+		var selected_works = []
+		if (name === "2005") {
+			prev_year = ""
+			next_year = "2006"
+			selected_works = [ "72L", "139P", "137P", "140P", "96P", "82P",
+					"40P", "50P", "101P", "113P", "114P" ];
+		} else if (name === "2006") {
+			prev_year = "2005"
+			next_year = "2009"
+			selected_works = [ "212P", "215P", "228P", "214P", "218P", "226P",
+					"203P", "229P", "208P", "207P" ];
+		} else if (name === "2009") {
+			prev_year = "2006"
+			next_year = "2012"
+			selected_works = [ "317P", "327P", "281P", "292P", "293P", "302P",
+					"303P", "301P", "305P", "308P", "315P", "269P", "328P",
+					"318P", "322P", "323P", "330P", "333P", "326P" ];
+		} else if (name === "2012") {
+			prev_year = "2009"
+			next_year = "2014"
+			selected_works = [ "768C", "461C", "837C", "416C", "637C", "604C",
+					"786C", "780C", "584C", "843C", "574C", "812C", "577C",
+					"649C", "892C" ];
+		} else if (name === "2014") {
+			prev_year = "2012"
+			next_year = "2022"
+			selected_works = [ "904A", "905A" ];
+		} else if (name === "2022") {
+			prev_year = "2014"
+			next_year = "2023"
+			selected_works = [ "14A-2022", "8A-2022", "4A-2022", "13A-2022",
+					"20A-2022", "24A-2022", "15A-2022", "16A-2022", "12A-2022",
+					"17A-2022" ];
+		} else if (name === "2023") {
+			prev_year = "2022"
+			next_year = "2024"
+			selected_works = [ "27A-2023", "25A-2022", "29A-2023", "28A-2023",
+					"30A-2023", "33W-2023", "34W-2023", "35W-2023" ];
+		} else if (name === "2024") {
+			prev_year = "2023"
+			next_year = ""
+			selected_works = [];
+		}
+
+		//name = next_year+" "+name+" "+prev_year
+		year_div.innerHTML = name
+		prev_year_div.innerHTML = next_year
+		next_year_div.innerHTML = prev_year
+		next_year_div.href = "works.html?y=" + prev_year
+		prev_year_div.href = "works.html?y=" + next_year
+		createCatlog(panel_div, selected_works, site_data);
 	}
 
 	function windowResized() {
 		doResizeWindow();
-
 	}
 
 	window.onresize = windowResized;
 </script>
 
 </head>
+<body onload="init()">
 
-
-
-<body onload="init()" style="overflow-y: scroll;">
-	<div
-		style="max-width: 900px; margin: auto; padding-left: 10px; padding-right: 10px;">
+	<div id="main_panel" class="main_panel">
 		<div
-			style="margin-top: 20px; margin-bottom: 10px; text-align: center; font-size: 27px;">
-			<a class="linkSpec1" lng-href="index.html">JEAN BOUSSICAULT</a>
+			style="margin-top: 20px; margin-bottom: 10px; text-align: center; font-size: 2.4em;">
+			<a class="linkSpec1" href="index.html">JEAN BOUSSICAULT</a>
 		</div>
 		<div style="margin-bottom: 50px; text-align: center;">
-			<a lng-href="index.html">Home</a> | <a lng-href="works.html"
-				lng-tag="all_works"></a> | <a lng-href="contact.html"
-				lng-tag="contact"></a> | <a href="works.html?locale=fr_FR">Français</a>
-			| <a href="works.html?locale=en_US">English</a>
+			<a href="index.html">Home</a> | <a href="contact.html">Contact</a>
 		</div>
+		<div class="textAlignCenter"
+			style="font-size: 25px; margin-bottom: 10px;" lng-tag="catalog_2022"></div>
+		<table style="margin: auto; margin-bottom: 30px; width: 150px;">
+			<tr>
+				<td style="vertical-align: middle; width: 35px; text-align: center;"><a
+					id="prev_year"></a></td>
+				<td style="vertical-align: middle; width: 80px; text-align: center;"><div
+						id="year_div" style="font-size: 22px;"></div></td>
+				<td style="vertical-align: middle; width: 35px; text-align: center;"><a
+					id="next_year"></a></td>
+			</tr>
+		</table>
 
-		<div class="textAlignCenter"
-			style="margin-bottom: 10px; font-size: 22px;">
-			<a lng-href="all_works.html" lng-href-param="tp=sk"
-				lng-tag="sketches"></a>
-		</div>
-		<div style="text-align: center; margin-bottom: 40px;">
-			<a lng-href="all_works.html" lng-href-param="tp=sk"><img
-				style="width: 100%; height: auto;" alt=""
-				src="img/sketches_mosaic.png"></a>
-		</div>
-		<div class="textAlignCenter"
-			style="margin-bottom: 10px; font-size: 22px;">
-			<a lng-href="all_works.html" lng-href-param="tp=pt"
-				lng-tag="paintings"></a>
-		</div>
-		<div style="text-align: center; margin-bottom: 40px;">
-			<a lng-href="all_works.html" lng-href-param="tp=pt"><img
-				style="width: 100%; height: auto;" alt=""
-				src="img/paintings_mosaic.png"></a>
-		</div>
-		<div class="textAlignCenter"
-			style="margin-bottom: 10px; font-size: 22px;">
-			<a lng-href="all_works.html" lng-href-param="tp=ch"
-				lng-tag="chinese_paintings"></a>
-		</div>
-		<div style="text-align: center; margin-bottom: 40px;">
-			<a lng-href="all_works.html" lng-href-param="tp=ch"><img
-				style="width: 100%; height: auto;" alt=""
-				src="img/chinese_mosaic.png"></a>
-		</div>
+		<div id="catalog_works"></div>
 	</div>
 </body>
-
-
 </html>

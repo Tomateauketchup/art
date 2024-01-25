@@ -9,123 +9,106 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="manifest" href="site.webmanifest">
-<link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 
-<title lng-tag="jb_1_small_formats"></title>
-<meta name="description" content="Site officiel du peintre Jean Boussicault. Retrouvez ici toutes ses oeuvres et derniers travaux.">
-
-<script type="text/javascript" src="fr_language_messages.js"></script>
-<script type="text/javascript" src="en_language_messages.js"></script>
-<script type="text/javascript" src="data.js"></script>
-<script type="text/javascript" src="lib.js"></script>
-<link rel="stylesheet" href="site.css">
+<title>Jean Boussicault</title>
+<meta name="description"
+	content="Official website of the painter Jean Boussicault. Find here all his works and latest works.">
 <link
 	href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700|Roboto|PT+Sans+Caption|Lato|Open+Sans"
 	rel="stylesheet">
-
-
-<script type="text/javascript">
-	function createCatlog(panel, selected_works, site_data) {
-		for (let i = 0; i < selected_works.length; i++) {
-			var workId = selected_works[i];
-
-			var work = findWorkById(workId);
-			if (work) {
-
-				var technique = work.technique;
-				var height = work.height;
-				var width = work.width;
-				var heightStr = Math.round(height / 10);
-				var widthStr = Math.round(width / 10);
-
-				var table = document.createElement("table");
-				table.setAttribute("class", "catalogWorkBox");
-				table.style.maxWidth="800px";
-				var tr = document.createElement("tr");
-				table.appendChild(tr);
-				var td = document.createElement("td");
-				td.style.padding = "8px"
-				td.style.backgroundColor = "black";
-				tr.appendChild(td);
-				var img = document.createElement("img");
-				td.appendChild(img);
-				img.setAttribute("src", nq_image_path + "//" + workId + ".jpg");
-				img.style.width = "100%";
-				img.style.height = "auto";
-				img.style.cursor = "pointer";
-				img.addEventListener("click", function() {
-					openWork(workIdConst);
-				});
-
-				tr = document.createElement("tr");
-				table.appendChild(tr);
-				td = document.createElement("td");
-				tr.appendChild(td);
-
-				var div = createWorkDetailBox(work);
-				td.appendChild(div);
-
-				var div2 = document.createElement("div");
-				div.appendChild(div2);
-				div2.setAttribute("class", "button");
-				div2.setAttribute("lng-tag", "open_hd");
-				div2.style.marginTop = "15px";
-				const workIdConst = workId;
-				div2.addEventListener("click", function() {
-					openWork(workIdConst);
-				});
-				panel.appendChild(table);
-
-			}
-
-		}
-	}
-
-	function init() {
-
-		doResizeWindow();
-		var panel_div = document.querySelector('#catalog_works');
-		var selected_works = [ "14A-2022", "13A-2022", "20A-2022", "24A-2022",
-				"15A-2022", "16A-2022", "4A-2022", "8A-2022", "12A-2022",
-				"17A-2022" ];
-		createCatlog(panel_div, selected_works, site_data);
-		translate();
-	}
-
-	function windowResized() {
-		doResizeWindow();
-	}
-
-	window.onresize = windowResized;
-</script>
-
+<link rel="stylesheet" href="site.css">
 </head>
-<body onload="init()">
 
-	<div id="main_panel" class="main_panel">
-		<div
-			style="margin-top: 20px; margin-bottom: 10px; text-align: center; font-size: 27px;">
-			<a class="linkSpec1" lng-href="index.html">JEAN BOUSSICAULT</a>
-		</div>
-		<div style="margin-bottom: 50px; text-align: center;">
-			<a lng-href="index.html">Home</a> | <a lng-href="works.html"
-				lng-tag="all_works"></a> | <a lng-href="contact.html"
-				lng-tag="contact"></a> | <a href="index.html?locale=fr_FR">Français</a>
-			| <a href="index.html?locale=en_US">English</a>
-		</div>
-		<div class="textAlignCenter"
-			style="font-size: 25px; margin-bottom: 10px;" lng-tag="catalog_2022"></div>
-		<div class="textAlignCenter"
-			style="font-size: 22px; margin-bottom: 10px;">#1</div>
-		<div class="textAlignCenter"
-			style="font-size: 21px; margin-bottom: 35px; font-style: italic;"
-			lng-tag="small_formats"></div>
-		
-		
+<body>
 
-		<div id="catalog_works"></div>
+
+	<div
+		style="font-size: 2.4em; text-align: center; margin-top: 30px; color: #ebebeb;">JEAN
+		BOUSSICAULT</div>
+	<div style="text-align: center; margin-bottom: 45px; margin-top: 10px;">
+		<a href="contact.html">Contact</a>
+	</div>
+
+	<table style="margin: auto;">
+	<tr>
+		<td style="padding: 10px;background-color: black;">
+			<img src="img/paintings/selected/27A-2023.jpg"
+			style="width: 100%; height: auto; max-width: 900px;">
+		</td>
+	</tr>
+	</table>
+	
+	<div
+		style="text-align: center; padding-left: 10px; padding-right: 10px; margin-top: 70px; margin-bottom: 70px;">
+		<img src="img/arrow_bottom.svg" style="width: 50px; height: 50px;">
+	</div>	
+	<div style="text-align: center; margin-bottom: 20px; font-size: 20px;">
+		<a href="works.html?y=2023">2023</a>
+	</div>
+	<div
+		style="text-align: center; padding-left: 10px; padding-right: 10px; margin-top: 0px; margin-bottom: 50px;">
+		<a href="works.html?y=2023"><img src="img/mosaique_2023.png"
+			style="width: 100%; height: auto; max-width: 500px;"></a>
+	</div>
+	<div style="text-align: center; margin-bottom: 20px; font-size: 20px;">
+		<a href="works.html?y=2022">2022</a>
+	</div>
+	<div
+		style="text-align: center; padding-left: 10px; padding-right: 10px; margin-top: 0px; margin-bottom: 50px;">
+		<a href="works.html?y=2022"><img src="img/mosaique_2022.png"
+			style="width: 100%; height: auto; max-width: 500px;"></a>
+	</div>
+	<div style="text-align: center; margin-bottom: 20px; font-size: 20px;">
+		<a href="works.html?y=2014">2014</a>
+	</div>
+	<div
+		style="text-align: center; padding-left: 10px; padding-right: 10px; margin-top: 0px; margin-bottom: 50px;">
+		<a href="works.html?y=2014"><img src="img/mosaique_2014.png"
+			style="width: 100%; height: auto; max-width: 500px;"></a>
+	</div>
+	<div style="text-align: center; margin-bottom: 20px; font-size: 20px;">
+		<a href="works.html?y=2012">2012</a>
+	</div>
+	<div
+		style="text-align: center; padding-left: 10px; padding-right: 10px; margin-top: 0px; margin-bottom: 50px;">
+		<a href="works.html?y=2012"><img src="img/mosaique_2012.png"
+			style="width: 100%; height: auto; max-width: 500px;"></a>
+	</div>
+	<div style="text-align: center; margin-bottom: 20px; font-size: 20px;">
+		<a href="works.html?y=2009">2009</a>
+	</div>
+	<div
+		style="text-align: center; padding-left: 10px; padding-right: 10px; margin-top: 0px; margin-bottom: 50px;">
+		<a href="works.html?y=2009"><img src="img/mosaique_2009.png"
+			style="width: 100%; height: auto; max-width: 500px;"></a>
+	</div>
+	<div style="text-align: center; margin-bottom: 20px; font-size: 20px;">
+		<a href="works.html?y=2006">2006</a>
+	</div>
+	<div
+		style="text-align: center; padding-left: 10px; padding-right: 10px; margin-top: 0px; margin-bottom: 50px;">
+		<a href="works.html?y=2006"><img src="img/mosaique_2006.png"
+			style="width: 100%; height: auto; max-width: 500px;"></a>
+	</div>
+	<div style="text-align: center; margin-bottom: 20px; font-size: 20px;">
+		<a href="works.html?y=2005">2005</a>
+	</div>
+	<div
+		style="text-align: center; padding-left: 10px; padding-right: 10px; margin-top: 0px; margin-bottom: 50px;">
+		<a href="works.html?y=2005"><img src="img/mosaique_2005.png"
+			style="width: 100%; height: auto; max-width: 500px;"></a>
+	</div>
+	<div
+		style="text-align: center; padding-left: 10px; padding-right: 10px; margin-top: 70px; margin-bottom: 30px;">
+		<img src="img/arrow_bottom.svg" style="width: 50px; height: 50px;">
+	</div>	
+	<div style="text-align: center; margin-bottom: 100px; font-size: 20px;">
+		<a href="all_works.html">All works in list</a>
 	</div>
 </body>
 </html>
+
+

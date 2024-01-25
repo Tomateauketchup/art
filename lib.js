@@ -1,7 +1,9 @@
 
-var hq_image_path = "http://jeanboussicault.com/hd";
-var nq_image_path = "http://jeanboussicault.com/nd";
-var lq_image_path = "http://jeanboussicault.com/ld";
+var hq_image_path = "img/paintings/hq";
+var nq_image_path = "img/paintings/nq";
+var lq_image_path = "img/paintings/lq";
+var selected_image_path = "img/paintings/selected";
+
 var windowHeight = window.innerHeight;
 var windowWidth = window.innerWidth;
 var workViewer;
@@ -129,10 +131,11 @@ function openWork(workId) {
 
 //TODO améliorer l'ordonancement de l'affichage des images
 
-function createWorkDetailBox(work) {
+function createWorkDetailBox(work,show_zoom_button) {
 
 	if (work) {
 
+		var work_id = work.id;
 		var technique = work.technique;
 		var support = work.support;
 		var height = work.height;
@@ -156,13 +159,65 @@ function createWorkDetailBox(work) {
 		if (technique) {
 			div2 = document.createElement("div");
 			div.appendChild(div2);
-			div2.setAttribute("lng-tag", "technique_" + technique);
+			var txt=""
+			if (technique==="wooden_pencil")
+			{
+				txt="Tech. : wooden pencil"
+			}else if (technique==="ballpoint_pen")
+			{
+				txt="Tech. : ballpoint pen"
+			}else if (technique==="oil_painting")
+			{
+				txt="Tech. : oil painting"
+			}else if (technique==="chinese_ink")
+			{
+				txt="Tech. : chinese ink"
+			}else if (technique==="acrylic_painting")
+			{
+				txt="Tech. : acrylic painting"
+			}else if (technique==="watercolor_acrylic")
+			{
+				txt="Tech. : watercolor, acrylic"
+			}
+			
+			
+			div2.innerHTML=txt;
 		}
 		if (support) {
 
 			div2 = document.createElement("div");
 			div.appendChild(div2);
-			div2.setAttribute("lng-tag", "support_" + support);
+			var txt=""
+			if (support==="wood")
+			{
+				txt="Sup. : wood"
+			}else if (support==="canvas")
+			{
+				txt="Sup. : canvas"
+			}else if (support==="chinese_paper")
+			{
+				txt="Sup. : chinese paper"
+			}else if (support==="paper")
+			{
+				txt="Sup. : paper"
+			}else if (support==="cotton_paper_640")
+			{
+				txt="Sup. : cotton paper 640g/m2"
+			}
+			div2.innerHTML=txt;
+		}
+		
+		if (show_zoom_button === true)
+		{
+			var a=document.createElement("div");
+			a.style.marginTop="15px"
+			a.className="button"
+			a.innerHTML="Zoom"
+			const workIdConst=work_id
+			a.addEventListener("click", function() {
+					openWork(workIdConst);
+			});
+			div.appendChild(a);
 		}
 
 		return div;
@@ -250,7 +305,7 @@ WorkViewer.prototype.open = function() {
 
 		var closeButton = document.createElement("div");
 		this.windowDiv.appendChild(closeButton);
-		closeButton.setAttribute("lng-tag", "close");
+		closeButton.innerHTML="Close";
 		closeButton.setAttribute("class", "closeButton");
 		closeButton.style.position = "fixed";
 		closeButton.style.top = "0px";
@@ -268,7 +323,7 @@ WorkViewer.prototype.open = function() {
 		infoDiv.style.borderRight = "1px solid #8b8b8b";
 		infoDiv.style.borderBottom = "1px solid #8b8b8b";
 
-		var detailsDiv = createWorkDetailBox(work);
+		var detailsDiv = createWorkDetailBox(work,false);
 		infoDiv.appendChild(detailsDiv);
 
 		this.windowDiv.setAttribute("id", "workWindow");
@@ -344,6 +399,6 @@ WorkViewer.prototype.open = function() {
 		this.zoomDiv.ontouchstart = this.zoomDiv.onmousedown;
 		this.zoomDiv.ontouchend = this.zoomDiv.onmouseup;
 		this.zoomDiv.ontouchmove = this.zoomDiv.onmousemove;
-		translate();
+		//translate();
 	}
 }
