@@ -1,8 +1,8 @@
 
-var hq_image_path = "img/paintings/hq";
-var nq_image_path = "img/paintings/nq";
-var lq_image_path = "img/paintings/lq";
-var selected_image_path = "img/paintings/selected";
+var hq_image_path = "https://www.weelgo.com/api/public-api/getWebResource/hq";
+var nq_image_path = "https://www.weelgo.com/api/public-api/getWebResource/nq";
+var lq_image_path = "https://www.weelgo.com/api/public-api/getWebResource/lq";
+var selected_image_path = "https://www.weelgo.com/api/public-api/getWebResource/selected";
 
 var windowHeight = window.innerHeight;
 var windowWidth = window.innerWidth;
